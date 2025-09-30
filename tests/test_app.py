@@ -1,4 +1,6 @@
-import pytest
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from app import soma, subtrai, multiplica, divide
 
 def test_soma():
@@ -14,9 +16,6 @@ def test_divide():
     assert divide(10, 2) == 5
 
 def test_divide_por_zero():
-    try:
+    import pytest
+    with pytest.raises(ValueError):
         divide(10, 0)
-    except ZeroDivisionError:
-        assert True
-    else:
-        assert False
